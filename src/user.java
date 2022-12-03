@@ -8,7 +8,7 @@ public class user implements payment{
     int wallet=0;
     boolean signup=false;
     boolean signin=false;
-    payment p= new overallDiscount(new credit_card());
+    payment p= new credit_card();
 
     public user() {
     	 System.err.println("your balance is "+wallet);
@@ -17,14 +17,7 @@ public class user implements payment{
         this.name=name;
         this.password=pass;
         System.err.println("hello sir "+name);
-        if (signup==false){
-            signin=false;
-        }
-        else if(signup==true){
-            signin=true;
-            signup=false;
-             p.pay();
-        }
+
         
     }
     void signUp(String name, String email,String pass){
@@ -62,9 +55,35 @@ public class user implements payment{
     public int getwallet(){
     	return wallet;
     }
-	@Override
+
+	 public void set_sevice_provider(String s) {
+		if(s=="credit") {
+			 p= new credit_card();
+		}
+		else if(s=="cache") {
+			p=new cache();
+		}
+		else if(s=="wallet") {
+			p=new wallet_pay();
+		}
+	}
+		@Override
 	public void pay() {
-		
+			if(signup==false&& signin==false) {
+				p.pay();
+			}
+			 if (signup==false){
+		            signin=false;
+		           p.pay();
+		        }
+		        else if(signup==true){
+		            signin=true;
+		            signup=false;
+		            payment p1 = new overallDiscount(p);
+		             p1.pay();
+		            // p=new credit_card();
+		        }
+			
 	}
     
 }

@@ -1,11 +1,7 @@
 public class donations implements service {
 
     String donation_name;
-   // String services [] = {"schools","cancer hospital","NGO"};
-    // donations(String obj){
-    //     this.donation_name=obj;
-
-    // }
+   
     @Override
     public void choose(String obj) {
         this.donation_name=obj;
