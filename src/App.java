@@ -7,7 +7,8 @@ public class App {
         us1.setservice(x);
         us1.chooseService("vodafone");
         us1.signin("yahia","123");
-        
+        us1.setwallet(5);
+        System.err.println("your balance is "+us1.getwallet());
         
     }
 }

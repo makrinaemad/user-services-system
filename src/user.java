@@ -1,12 +1,18 @@
 
-public class user {
+public class user implements payment{
     service s;
     String serviceName;
     String name;
     String email;
     String password;
+    int wallet=0;
     boolean signup=false;
     boolean signin=false;
+    payment p= new overallDiscount(new credit_card());
+
+    public user() {
+    	 System.err.println("your balance is "+wallet);
+    }
     void signin(String name, String pass){
         this.name=name;
         this.password=pass;
@@ -17,7 +23,7 @@ public class user {
         else if(signup==true){
             signin=true;
             signup=false;
-            System.err.println("discount here ");
+             p.pay();
         }
         
     }
@@ -26,6 +32,7 @@ public class user {
         this.email=email;
         this.password=pass;
         signup=true;
+      
     }
     void chooseService(String serviceObj){
         this.serviceName=serviceObj;
@@ -49,6 +56,16 @@ public class user {
         }
 
     }
+    public void setwallet(int amount){
+    	this.wallet=amount;
+    }
+    public int getwallet(){
+    	return wallet;
+    }
+	@Override
+	public void pay() {
+		
+	}
     
 }
 
