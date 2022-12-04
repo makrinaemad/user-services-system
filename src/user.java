@@ -1,5 +1,5 @@
 
-public class user implements payment{
+public class user {
     service s;
     String serviceName;
     String name;
@@ -56,18 +56,18 @@ public class user implements payment{
     	return wallet;
     }
 
-	 public void set_sevice_provider(String s) {
-		if(s=="credit") {
+	 public void set_sevice_provider(String name) {
+		if(name=="credit") {
 			 p= new credit_card();
 		}
-		else if(s=="cache") {
+		else if(name=="cache") {
 			p=new cache();
 		}
-		else if(s=="wallet") {
+		else if(name=="wallet") {
 			p=new wallet_pay();
 		}
 	}
-		@Override
+		//@Override
 	public void pay() {
 			if(signup==false&& signin==false) {
 				p.pay();
