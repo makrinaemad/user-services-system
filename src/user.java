@@ -7,12 +7,11 @@ public class user {
     public String password;
     public int wallet=0;
     public boolean signup=false;
-  //  public boolean signin=false;
   
     public  payment p= new credit_card();
     public Admin Admn=new Admin();
+    
     public user(Admin a) {
-    	// System.err.println("your balance is "+wallet);
     	 this.Admn=a;
     }
     void signin(String name, String pass){
@@ -46,9 +45,6 @@ public class user {
         else if(obj=="donation"){
             this.s=new donations();
         }
-//        else {
-//            System.err.println("not found");
-//        }
 
     }
 
@@ -134,16 +130,7 @@ public class user {
 		
 	}
 	
-//	this.s=new mobile_services();
-//}
-//else if(obj=="internet"){
-//    this.s=new internet_service();
-//}
-//else if(obj=="landline"){
-//    this.s=new landLine_service();
-//}
-//else if(obj=="donation"){
-//    this.s=new donations();
+
 }
 
 

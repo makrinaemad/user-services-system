@@ -23,9 +23,7 @@ public class donations implements service {
         else if (donation_name=="NGO"){
             System.err.println(donation.get(2));
         }
-//        else {
-//            System.err.println("not found ");
-//        }
+
         
     }
     public void show() {
