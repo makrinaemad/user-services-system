@@ -15,6 +15,7 @@ public class specificDiscount extends paymentDecorator{
     private void setDiscount(payment Decoratorpayment)
     {
       // Display message whenever function is called
-        System.out.println("20% discount for first all moblie recharge");
+        System.out.println("20% discount ");
+        
     }
 }

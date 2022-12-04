@@ -1,10 +1,14 @@
+import java.util.Vector;
+
 public class landLine_service implements service {
 
     String service_name;
-    // landLine_service(String obj){
-    //     this.service_name=obj;
-    // }
-   // String services [] = {"monthely","quarter"};
+    Vector<String> landline= new Vector<String>();
+    int numService=2;
+    public landLine_service() {
+    	landline.add("quarter");
+    	landline.add("monthely");
+    }
     @Override
     public void choose(String obj) {
         this.service_name=obj;
@@ -14,11 +18,12 @@ public class landLine_service implements service {
         else if (service_name=="monthely"){
             System.err.println(service_name);
         }
-        else {
-            System.err.println("not found ");
-        }
         
         
     }
-    
+
+    public void show() {
+      	 for (int i = 0; i <landline.size(); i++)
+               System.out.println(landline.get(i)+" service" );
+      }
 }

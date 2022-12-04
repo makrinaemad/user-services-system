@@ -1,10 +1,15 @@
+import java.util.Vector;
+
 public class mobile_services implements service{
     String service_name;
-    //String services [] = {"vodafone","etsalat","we","orange"};
-    // mobile_services(String obj){
-    //     this.service_name=obj;
-    // }
-
+    Vector<String> mobile= new Vector<String>();
+    int numService=4;
+    public mobile_services() {
+    	mobile.add("vodafone");
+    	mobile.add("etsalat");
+    	mobile.add("we");
+    	mobile.add("orange");
+    }
     @Override
     public void choose(String obj) {
         this.service_name=obj;
@@ -12,17 +17,21 @@ public class mobile_services implements service{
             System.err.println("you choose mobile servics ("+service_name+")");
         }
         else if (service_name=="etsalat"){
-            System.err.println(service_name);
+        	 System.err.println("you choose mobile servics ("+service_name+")");
         }
         else if  (service_name=="we"){
-            System.err.println(service_name);
+        	 System.err.println("you choose mobile servics ("+service_name+")");
         }
         else if (service_name=="orange"){
-            System.err.println(service_name);
+        	 System.err.println("you choose mobile servics ("+service_name+")");
         }
         else {
-            System.err.println("not found ");
+        	 System.err.println("you choose mobile servics ("+service_name+")");
         }
     }
+    public void show() {
+   	 for (int i = 0; i <mobile.size(); i++)
+            System.out.println(mobile.get(i)+" service" );
+   }
     
 }
