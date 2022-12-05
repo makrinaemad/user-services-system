@@ -3,6 +3,12 @@
 public class cache implements payment{
 String mobile_num;
 	int amount;
+	public cache () {}
+	public cache (String mob,int a) {
+		this.amount=amount+a;
+		this.mobile_num=mob;
+	}
+	
 	public String getMobile_num() {
 		return mobile_num;
 	}
@@ -12,12 +18,20 @@ String mobile_num;
 	public int getAmount() {
 		return amount;
 	}
-	public void setAmount(int amount) {
-		this.amount = amount;
+	public void setAmount(String mob,int a) {
+		this.amount=amount+a;
+		this.mobile_num=mob;
 	}
+	@Override
 	public void pay() {
-		System.out.println("cache payment");
 		
+	}
+	public void Withdraw_money(int money) {
+		if(money<=amount)
+		{System.out.println("you pay "+money+" cache");
+		amount-=money;}
+		else 
+			System.out.println("you don't have enough money cache");
 	}
 
 }

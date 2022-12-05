@@ -7,9 +7,13 @@ public class user {
 	public String name;
 	public String email;
 	public String password;
-	public int wallet = 0;
+	//public int wallet = 0;
 	public boolean signup = false;
 	public boolean signout = true;
+	public boolean first_transaction=false;
+	credit_card credit=new credit_card();
+	cache cach =new cache();
+	wallet_pay wallet=new wallet_pay();
 	public boolean isSignout() {
 		return signout;
 	}
@@ -26,9 +30,9 @@ public class user {
 		this.password = password;
 	}
 
-	
+	//public credit_card credit=new credit_card(0,0);
 
-	public payment p = new credit_card();
+	public payment p = credit ;
 	public String getName() {
 		return name;
 	}
@@ -94,29 +98,52 @@ public class user {
 		return serviceName;
 	}
 
-	public void setwallet(int amount) {
-		this.wallet = wallet+amount;
-	}
+//	public void Add_to_wallet(int amount) {
+//		this.wallet = wallet+amount;
+//	}
+//
+//	public int getwallet() {
+//		return wallet;
+//	}
 
-	public int getwallet() {
-		return wallet;
-	}
-
-	public void set_sevice_provider(String name) {
+	public void set_sevice_provider(String name ) {
+		 System.err.println("Enter amount of the money");
+    	 Scanner sc1 = new Scanner(System.in);
+ 		int n = sc1.nextInt();
 		if (name == "credit") {
-			p = new credit_card();
+			System.err.println("Enter the code of the credit card");
+			Scanner sc2 = new Scanner(System.in);
+	 		int c = sc2.nextInt();
+	 		credit.setAmount(n,c);
+			p = credit;
 		} else if (name == "cache") {
-			this.p = new cache();
+			System.err.println("Enter your mobile number");
+			Scanner sc2 = new Scanner(System.in);
+	 		String c = sc2.nextLine();
+			//this.p = 
+					cach.setAmount(c,n);
 		} else if (name == "wallet") {
-			this.p = new wallet_pay();
+			wallet.setAmount(credit,n);
 		}
 	}
 
-	public void pay() {
+	public void pay(int a, int provider) {
+		if(provider ==1)
+			{this.p=credit;
+			credit.Withdraw_money(a);}
+		else if(provider==2)
+			{this.p=cach;
+			cach.Withdraw_money(a);}
+		else if(provider ==3) {
+				this.p=wallet;
+				wallet.Withdraw_money(a);}
+		else
+			System.err.println("enter 1 or 2 or 3 and try again");
 		if (ad.get_specific_discount() == serviceName && signup == true) {
 			payment p1 = new specificDiscount(p);
 			payment p2 = new overallDiscount(p1);
 			p2.pay();
+			
 			signup = false;
 		} else if (ad.get_specific_discount() == serviceName) {
 			p = new specificDiscount(p);
@@ -126,23 +153,24 @@ public class user {
 
 		else if (signup == true) {
 			signup = false;
+			
 			payment p1 = new overallDiscount(p);
 			p1.pay();
-
 		} else
 			p.pay();
+		first_transaction=true;
+		
 
 	}
 
 	public void Check_Discount() {
-		if (signup == true) {
+		if (first_transaction == false) {
 			System.err.println("you have 10% discount for the first transaction");
 		}
-
 		if (ad.get_specific_discount().equals( serviceName)) {
 			System.err.println("you have 20% discount for all " + serviceName);
 		}
-		else if(signup ==false)
+		 if(first_transaction &&ad.get_specific_discount().equals( serviceName)==false)
 			System.err.println("you don't have any discounts");
 	}
 

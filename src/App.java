@@ -10,13 +10,20 @@ public class App {
 	   Vector<user>  us = new Vector<user>();
 	   user u =new user();
 	   int num_us=0;
-     while(true) { System.err.println("Welcome to our Fawry System ...");
+     while(true) {
+    	 System.err.println("Enter 1 or 2\nAdmin or User");
+    	 Scanner sc100 = new Scanner(System.in);
+  		int a = sc100.nextInt();
+  		if(a==1) {
+  			
+  		}
+  		else {
+    	 System.err.println("Welcome to our Fawry System ...");
       System.err.println("***********************************");
       System.err.println("Choose : \n1.for signUP \n2.for signIN ");
       Scanner sc=new Scanner(System.in);
       int signNUM=sc.nextInt();
       
-     // user us=new user();
       if(signNUM==1){
          String name,email,password;
          System.err.println("Enter your name :");
@@ -68,24 +75,26 @@ public class App {
          password=sc2.nextLine();
          if(us.size()==0)
         	 System.err.println("The name or the password is incorrect");
+         boolean correct=false;
          for(int i=0;i<us.size();i++) {
         	 if(name.equals( us.get(i).getName())&&password.equals(us.get(i).getPassword())) {
         		 us.get(i).signin(name, password);
+        		 correct=true;
         	 }
-        	 else  {
+        	 if(i==us.size()-1&&correct==false)  {
         		 System.err.println("The name or the password is incorrect");
         	 }
-       //  us.signin(name, password);
       }}
+      else
+    	  System.err.println("Enter 1 or 2");
       while(us.get(num_us).isSignout()) {
-         System.err.println("\nEnter the number of what you want..\n1-Search\n2-Choose Service to pay\n3-Check Discount\n4-Ask for refund\n5-Add money in the wallet \n6-show wallet money \n7-sign out ");
+         System.err.println("\nEnter the number of what you want..\n1-Search\n2-Choose Service to pay\n3-Check Discount\n4-Ask for refund\n5-Add money in the wallet \n6-Set credit card or Cache payment  \n7-sign out ");
          Scanner sc4=new Scanner(System.in);
          String num=sc4.nextLine();
          if(num.equals("1")) {
         	 us.get(num_us).search();
          }
          else if(num.equals("2")) {
-        	// us.get(num_us).search();
            System.err.println("Type the service you want \n -Mobile \n -Internet \n -Landline  \n -Donation ");
            Scanner sc40=new Scanner(System.in);
            String servname=sc40.nextLine();
@@ -93,7 +102,13 @@ public class App {
            Scanner sc5=new Scanner(System.in);
            String serv=sc5.nextLine();
            us.get(num_us).chooseService(serv);
-           us.get(num_us).pay();
+           System.err.println("Enter \n1-for(credit) \n2-for (cache) \n3-for (withdraw from your wallet)");
+           Scanner sc11=new Scanner(System.in);
+           int no=sc11.nextInt();
+           System.err.println("Enter the amount");
+           Scanner sc0=new Scanner(System.in);
+           int money=sc0.nextInt();
+        	   us.get(num_us).pay(money,no);
          }
          else if(num.equals("3")) {
         	 us.get(num_us).Check_Discount();
@@ -102,20 +117,29 @@ public class App {
         	 us.get(num_us).request_refund();;
          }
          else if(num.equals("5")) {
-        	 System.err.println("Enter amount of the money");
-        	 Scanner sc1 = new Scanner(System.in);
-     		int n = sc1.nextInt();
-        	 us.get(num_us).setwallet(n);
+
+        	 us.get(num_us).set_sevice_provider("wallet");
          }
-         else if(num.equals("6")) {
-        	 System.err.println("Your balance is "+us.get(num_us).getwallet());
+        else if(num.equals("6")) {
+         System.err.println("Enter 1 or 2 to set");
+         Scanner sc11=new Scanner(System.in);
+         int m=sc11.nextInt();
+         if(m==1) {
+        	 us.get(num_us).set_sevice_provider("credit");
          }
+         else if(m==2) {
+        	 us.get(num_us).set_sevice_provider("cache");
+         }
+         else {System.err.println("not valid");}
+        }
          else if(num.equals("7")) {
         	 us.get(num_us).setSignout(false);;
          }
          else
         	 System.err.println("not valid");}
-      us.get(num_us).setSignout(true);  
+      us.get(num_us).setSignout(true);  }
+      
+      
       System.err.println("if you want end the application enter 0 \n"
       		+ "else enter 1");
       Scanner sc1 = new Scanner(System.in);
@@ -126,78 +150,7 @@ public class App {
 			continue;
      
      }
-//      System.err.println("Type the service you want \n -Mobile Service \n -Internet Service \n -Landline Servie \n -Donations service");
-//      Scanner sc4=new Scanner(System.in);
-//      String servname=sc4.nextLine();
-//      us.setservice(servname);
-//      // 2
-//
-//      us.chooseService("vodafone");
-//      System.err.println(""); 
       
-      
-
-
-      
-
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-   //    String x = "mobile";
-
-   //    Admin ad = Admin.getInstance();
-
-   //    user us1 = new user();
-   //    us1.signUp("yahia", "yahia@", "123");
-   //    us1.set_sevice_provider("wallet");
-   //    us1.signin("yahia", "123");
-   //    us1.setservice(x);
-   //    us1.chooseService("vodafone");
-   //    us1.signin("yahia", "123");
-   //    us1.pay();
-   //    us1.setwallet(5);
-   //    System.err.println("your balance is " + us1.getwallet());
-   //    us1.signin("yahia", "123");
-   //    us1.pay();
-   //    us1.request_refund();
-
-   //    ad.make_specific_discount("donation");
-   //    user us2 = new user();
-
-   //    us2.signUp("Eman", "Eman@yahoo.com", "1234");
-   //    us2.set_sevice_provider("wallet");
-   //    us2.signin("Eman", "1234");
-   //    us2.setservice("donation");
-   //    us2.chooseService("donation");
-   //    us2.signin("Eman", "1234");
-   //    us2.Check_Discount();
-   //    us2.pay();
-   //    us2.setwallet(5);
-   //    System.err.println("your balance is " + us2.getwallet());
-   //    us2.signin("Eman", "1234");
-   //    us2.pay();
-   //    us2.request_refund();
-
-   //    ad.request_list();
-   //    us2.search();
-
-   // }
+     
 }
 }

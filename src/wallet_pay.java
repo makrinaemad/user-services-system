@@ -1,29 +1,60 @@
-
+import java.util.Vector;
 
 public class wallet_pay implements payment{
-	String user_name;
-	String mobile_num;
-	public String getUser_name() {
-		return user_name;
-	}
-	public void setUser_name(String user_name) {
-		this.user_name = user_name;
-	}
-	public String getMobile_num() {
-		return mobile_num;
-	}
-	public void setMobile_num(String mobile_num) {
-		this.mobile_num = mobile_num;
-	}
-	public int getAmount() {
-		return amount;
-	}
-	public void setAmount(int amount) {
-		this.amount = amount;
-	}
-	int amount;
-	public void pay() {
-		System.out.println("from wallet");
+//	String user_name;
+//	String pass;
+	int amount_wallet=0;
+	credit_card credit;
+	//Vector<String> landline= new Vector<String>();
+	public wallet_pay() {}
+	
+	public wallet_pay(credit_card c,int a) {
+//		this.amount=a+amount;
+//		this.pass=p;
+//		this.user_name=name;
+		this.credit=c;
+		if(a<=credit.amount) {
+			this.amount_wallet = a+amount_wallet;
+			credit.amount-=a;
+		}
+		else
+			System.out.println("you don't have enough money on your your cred");
 		
+	}
+//	public String getUser_name() {
+//		return user_name;
+//	}
+//	public void setUser_name(String user_name) {
+//		this.user_name = user_name;
+//	}
+//	public String getpass() {
+//		return pass;
+//	}
+//	public void setpass(String p) {
+//		this.pass = p;
+//	}
+	public int getAmount() {
+		return amount_wallet;
+	}
+	public void setAmount(credit_card c,int a) {
+		this.credit=c;
+		if(a<=credit.amount) {
+			this.amount_wallet = a+amount_wallet;
+			credit.amount-=a;
+		}
+		else
+			System.out.println("you don't have enough money on your your cred");
+	}
+	
+	@Override
+	public void pay() {
+		
+	}
+	public void Withdraw_money(int money) {
+		if(money<=amount_wallet )
+		{System.out.println("you pay "+money+" from your wallet");
+		amount_wallet -=money;}
+		else 
+			System.out.println("you don't have enough money in your wallet");
 	}
 }

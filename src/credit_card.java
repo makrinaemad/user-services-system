@@ -3,11 +3,21 @@
 public class credit_card implements payment{
 	String mobile_num;
 	int card_code;
-	int amount;
+	int amount=0;
+	
+	public  credit_card() {};
+	public credit_card(int a,int code ) {
+		this.amount=amount+a;
+		this.card_code=code;
+	}
 	@Override
-	public void pay() {
-		System.out.println("via credit card");
-		
+	public void pay() {}
+	public void Withdraw_money(int money) {
+		if(money<=amount)
+		{System.out.println("you pay "+money+" via credit card");
+		amount-=money;}
+		else 
+			System.out.println("you don't have enough money via credit card");
 	}
 	public String getMobile_num() {
 		return mobile_num;
@@ -24,8 +34,9 @@ public class credit_card implements payment{
 	public int getAmount() {
 		return amount;
 	}
-	public void setAmount(int amount) {
-		this.amount = amount;
+	public void setAmount(int a,int code) {
+		this.amount=amount+a;
+		this.card_code=code;
 	}
 
 }

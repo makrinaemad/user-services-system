@@ -2,7 +2,7 @@
 
 public class paymentDecorator implements payment{
 	 protected payment Decoratorpayment;
-	 
+	
 	    // Method 1
 	    // Abstract class method
 	    public paymentDecorator(payment Decoratorpayment)
@@ -13,5 +13,11 @@ public class paymentDecorator implements payment{
 	 
 	    // Method 2 - draw()
 	    // Outside abstract class
-	    public void pay() { Decoratorpayment.pay(); }
+	    public void pay(payment Decoratorpayment) { Decoratorpayment.pay(); }
+
+		@Override
+		public void pay() {
+			// TODO Auto-generated method stub
+			
+		}
 }
