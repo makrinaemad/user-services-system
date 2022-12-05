@@ -2,10 +2,10 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Admin {
-	//user us;
+	// user us;
 	String accept;
 	String service = "";
-	//public boolean specific_Dis = false;
+	// public boolean specific_Dis = false;
 	ArrayList<String> user_list = new ArrayList<String>();
 	private static final Admin instance = new Admin();
 
@@ -23,14 +23,14 @@ public class Admin {
 
 	public void get_request_from_user(String n, String str, int cost) {
 
-		user_list.add(n);
-		System.err.println("Accept or Not :");
+		System.err.println("Accept or Reject :");
 		Scanner sc = new Scanner(System.in);
 		this.accept = sc.nextLine();
-		if (accept.equals("yes")) {
-			System.err.println("refund request accpeted ");
-		} else if (accept.equals("no")) {
-			System.err.println("refund request rejected ");
+		if (accept.equals("Accept")) {
+			Accept();
+			user_list.add(n);
+		} else if (accept.equals("Reject")) {
+			Reject();
 		}
 	}
 
@@ -42,5 +42,13 @@ public class Admin {
 	public String get_specific_discount() {
 
 		return service;
+	}
+
+	public void Accept() {
+		System.err.println("refund request accpeted ");
+	}
+
+	public void Reject() {
+		System.err.println("refund request rejected ");
 	}
 }
