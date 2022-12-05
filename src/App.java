@@ -10,19 +10,51 @@ public class App {
 	   Vector<user>  us = new Vector<user>();
 	   user u =new user();
 	   int num_us=0;
+	    Admin ad = Admin.getInstance();
+	    boolean correct=false;
      while(true) {
     	 System.err.println("Enter 1 or 2\nAdmin or User");
     	 Scanner sc100 = new Scanner(System.in);
   		int a = sc100.nextInt();
   		if(a==1) {
-  			
+  			 System.err.println("Enter 1 to show the  list all refund requests \nEnter 2 to Add specific discount");
+  			Scanner sc=new Scanner(System.in);
+  	      int n=sc.nextInt();
+  	      if(n==1) {
+  	    	  if(ad.user_list.size()>0) {
+  	    	  ad.request_list();
+  	    	 System.err.println("Enter index of the user to show it (from 1 to "+(ad.user_list.size())+" )");
+  	    	Scanner sc2=new Scanner(System.in);
+  	      int indx=sc2.nextInt();
+  	    System.err.println(ad.user_list.get(indx-1)+ad.amount.get(indx-1)+"\nif you want to Accept enter 1 else 0");
+  	    	Scanner sc1=new Scanner(System.in);
+    	      int no=sc1.nextInt();
+  	    	 if(no==1) {
+  	    		 ad.Accept(ad.user_list.get(indx-1),ad.amount.get(indx-1));
+  	    	 }
+  	    	 else if(no==2) {
+  	    		 ad.Reject(ad.user_list.get(indx-1));
+  	    	 }
+  	    	 else { System.err.println("Enter 1 or 2");
+  	      }}
+  	    	  else System.err.println("No refund requsts yet"); 
+  	    		  
   		}
+  	    else if(n==2) {
+  	    	System.err.println("Enter the name of sevive you want to add (mobile,internet,donation,landline");
+  	    	Scanner sc000=new Scanner(System.in);
+    	      String s=sc000.nextLine();
+  	    	  ad.make_specific_discount(s);
+  	      
+  	      }
+  		
+  	      }
   		else {
     	 System.err.println("Welcome to our Fawry System ...");
       System.err.println("***********************************");
       System.err.println("Choose : \n1.for signUP \n2.for signIN ");
-      Scanner sc=new Scanner(System.in);
-      int signNUM=sc.nextInt();
+      Scanner sc2=new Scanner(System.in);
+      int signNUM=sc2.nextInt();
       
       if(signNUM==1){
          String name,email,password;
@@ -30,11 +62,11 @@ public class App {
          Scanner sc1=new Scanner(System.in);
          name=sc1.nextLine();
          System.err.println("Enter your email :");
-         Scanner sc2=new Scanner(System.in);
-         email=sc2.nextLine();
-         System.err.println("Enter your password :");
          Scanner sc3=new Scanner(System.in);
-         password=sc3.nextLine();
+         email=sc3.nextLine();
+         System.err.println("Enter your password :");
+         Scanner sc4=new Scanner(System.in);
+         password=sc4.nextLine();
          boolean sign=false;
          for(int i=0;i<us.size();i++) {
         	 if(name.equals( us.get(i).getName())) {
@@ -60,9 +92,11 @@ public class App {
          for(int i=0;i<us.size();i++) {
         	 if(name.equals( us.get(i).getName())&&password.equals(us.get(i).getPassword())) {
         		 us.get(i).signin(name, password);
+        		 correct=true;
         	 }
         	 else  {
         		 System.err.println("The name or the password is incorrect");
+        		 correct=false;
         	 }}
       }}
       else if(signNUM==2){
@@ -71,11 +105,11 @@ public class App {
          Scanner sc1=new Scanner(System.in);
          name=sc1.nextLine();
          System.err.println("Enter your password :");
-         Scanner sc2=new Scanner(System.in);
-         password=sc2.nextLine();
+         Scanner sc5=new Scanner(System.in);
+         password=sc5.nextLine();
          if(us.size()==0)
         	 System.err.println("The name or the password is incorrect");
-         boolean correct=false;
+       correct=false;
          for(int i=0;i<us.size();i++) {
         	 if(name.equals( us.get(i).getName())&&password.equals(us.get(i).getPassword())) {
         		 us.get(i).signin(name, password);
@@ -85,9 +119,10 @@ public class App {
         		 System.err.println("The name or the password is incorrect");
         	 }
       }}
-      else
-    	  System.err.println("Enter 1 or 2");
-      while(us.get(num_us).isSignout()) {
+         else
+       	  System.err.println("Enter 1 or 2");
+     
+      while(us.get(num_us).isSignout()&&correct==true) {
          System.err.println("\nEnter the number of what you want..\n1-Search\n2-Choose Service to pay\n3-Check Discount\n4-Ask for refund\n5-Add money in the wallet \n6-Set credit card or Cache payment  \n7-sign out ");
          Scanner sc4=new Scanner(System.in);
          String num=sc4.nextLine();

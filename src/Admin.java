@@ -1,12 +1,16 @@
 import java.util.ArrayList;
 import java.util.Scanner;
-
+import java.util.HashMap; 
 public class Admin {
 	// user us;
-	String accept;
+	//String accept;
 	String service = "";
 	// public boolean specific_Dis = false;
-	ArrayList<String> user_list = new ArrayList<String>();
+	public ArrayList<String> user_list = new ArrayList<String>();
+	public ArrayList<String> provider1 = new ArrayList<String>();
+	public ArrayList<String> provider2 = new ArrayList<String>();
+	public ArrayList<Integer> amount = new ArrayList<Integer>();
+	public HashMap<String, Integer> accept = new HashMap<String, Integer>();
 	private static final Admin instance = new Admin();
 
 	protected Admin() {
@@ -18,20 +22,14 @@ public class Admin {
 	}
 
 	public void request_list() {
-		System.err.println(user_list);
+		for(int i=0;i<amount.size();i++) {
+		System.err.println("Name: "+user_list.get(i)+" , Amount: "+amount.get(i));}
 	}
 
-	public void get_request_from_user(String n, String str, int cost) {
-
-		System.err.println("Accept or Reject :");
-		Scanner sc = new Scanner(System.in);
-		this.accept = sc.nextLine();
-		if (accept.equals("Accept")) {
-			Accept();
-			user_list.add(n);
-		} else if (accept.equals("Reject")) {
-			Reject();
-		}
+	public void get_request_from_user(String n, int cost,String provider) {
+		user_list.add(n);
+		amount.add(cost);
+		provider1.add(provider);
 	}
 
 	public void make_specific_discount(String n) {
@@ -44,11 +42,19 @@ public class Admin {
 		return service;
 	}
 
-	public void Accept() {
-		System.err.println("refund request accpeted ");
+	public void Accept(String n,int a) {
+		for(int i=0;i<user_list.size();i++) {
+			if(user_list.get(i).equals(n))
+		       accept.put(n,a);
+			provider2.add(provider1.get(i));
+			user_list.remove(i);
+			amount.remove(i);
+			provider1.remove(i);
+			}
+		
 	}
 
-	public void Reject() {
+	public void Reject(String n) {
 		System.err.println("refund request rejected ");
 	}
 }

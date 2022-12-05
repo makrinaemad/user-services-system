@@ -14,10 +14,13 @@ public class credit_card implements payment{
 	public void pay() {}
 	public void Withdraw_money(int money) {
 		if(money<=amount)
-		{System.out.println("you pay "+money+" via credit card");
+			
+		{
+			int reminder=amount-money;
+			System.out.println("you pay "+money+" via credit card the remainder of your balance ("+reminder+")");
 		amount-=money;}
 		else 
-			System.out.println("you don't have enough money via credit card");
+			System.out.println("you don't have enough money via credit card set it and try again");
 	}
 	public String getMobile_num() {
 		return mobile_num;

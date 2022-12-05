@@ -14,7 +14,11 @@ public class user {
 	credit_card credit = new credit_card();
 	cache cach = new cache();
 	wallet_pay wallet = new wallet_pay();
-
+	
+	public user() {
+		super();
+		
+	}
 	public boolean isSignout() {
 		return signout;
 	}
@@ -51,14 +55,27 @@ public class user {
 		this.email = email;
 	}
 
-	public user() {
-		super();
-	}
-
 	void signin(String name, String pass) {
 		this.name = name;
 		this.password = pass;
 		System.err.println("Hello " + name + "\n");
+		for (String i : ad.accept.keySet()) {
+			int j=0;
+			if(i.equals(name)) {
+				if (ad.provider2.get(j).equals("credit") ) {
+					credit.setAmount(ad.accept.get(i), 1);
+				//	p = credit;
+				} else if (ad.provider2.get(j).equals("cache") ) {
+					// this.p =
+					cach.setAmount("1", ad.accept.get(i));
+				} else if (ad.provider2.get(j).equals("wallet")) {
+					wallet.setAmount(credit,ad.accept.get(i));
+				}
+				ad.accept.remove(i);
+				ad.provider2.remove(j);
+			}
+			j++;
+		}
 
 	}
 
@@ -218,11 +235,12 @@ public class user {
 	}
 
 	public void request_refund() {
-		System.err.println("enter cost :");
+		System.err.println("enter cost and the service provider:");
 		Scanner sc = new Scanner(System.in);
 		int refund_cost = sc.nextInt();
-
-		ad.get_request_from_user(this.name, this.serviceName, refund_cost);
+		Scanner sc1 = new Scanner(System.in);
+		String provider = sc1.nextLine();
+		ad.get_request_from_user(this.name, refund_cost, provider);
 
 	}
 
