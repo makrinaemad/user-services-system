@@ -4,7 +4,7 @@ import java.util.HashMap;
 public class Admin {
 	// user us;
 	//String accept;
-	String service = "";
+	String service = "mm";
 	// public boolean specific_Dis = false;
 	public ArrayList<String> user_list = new ArrayList<String>();
 	public ArrayList<String> provider1 = new ArrayList<String>();

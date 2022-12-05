@@ -1,9 +1,9 @@
 import java.util.Scanner;
 
-public class user {
-	static Admin ad = Admin.getInstance();
+public class user extends Admin{
+	public static Admin ad = Admin.getInstance();
 	public service s;
-	public String serviceName = "1";
+	public String serviceName ;
 	public String name;
 	public String email;
 	public String password;
@@ -11,6 +11,7 @@ public class user {
 	public boolean signup = false;
 	public boolean signout = true;
 	public boolean first_transaction = false;
+	public boolean first_transaction_money = false;
 	credit_card credit = new credit_card();
 	cache cach = new cache();
 	wallet_pay wallet = new wallet_pay();
@@ -92,11 +93,11 @@ public class user {
 	}
 
 	void chooseService(String serviceObj) {
-		this.serviceName = serviceObj;
 		s.choose(serviceObj);
 	}
 
 	void setservice(String obj) {
+		this.serviceName = obj;
 		if (obj.equals("mobile") || obj.equals("Mobile")) {
 			this.s = new mobile_services();
 			System.err.println("Type the service you want\norange \nwe \nvodafone \netisalat");
@@ -117,13 +118,6 @@ public class user {
 		return serviceName;
 	}
 
-	// public void Add_to_wallet(int amount) {
-	// this.wallet = wallet+amount;
-	// }
-	//
-	// public int getwallet() {
-	// return wallet;
-	// }
 
 	public void set_sevice_provider(String name) {
 		System.err.println("Enter amount of the money");
@@ -157,26 +151,27 @@ public class user {
 			this.p = wallet;
 			wallet.Withdraw_money(a);
 		} else
-			System.err.println("enter 1 or 2 or 3 and try again");
-		if (ad.get_specific_discount() == serviceName && signup == true) {
+			{System.err.println("enter 1 or 2 or 3 and try again");}
+		if (ad.get_specific_discount().equals(getServiceName())  && signup == true) {
 			payment p1 = new specificDiscount(p);
 			payment p2 = new overallDiscount(p1);
 			p2.pay();
 
 			signup = false;
-		} else if (ad.get_specific_discount() == serviceName) {
-			p = new specificDiscount(p);
-			p.pay();
+		} else if (ad.get_specific_discount().equals(getServiceName()) ) {
+			payment p1 = new specificDiscount(p);
+			 p1.pay();
 
 		}
 
 		else if (signup == true) {
 			signup = false;
-
 			payment p1 = new overallDiscount(p);
 			p1.pay();
-		} else
+		} 
+		 else
 			p.pay();
+		
 		first_transaction = true;
 
 	}
@@ -185,11 +180,10 @@ public class user {
 		if (first_transaction == false) {
 			System.err.println("you have 10% discount for the first transaction");
 		}
-		if (ad.get_specific_discount().equals(serviceName)) {
-			System.err.println("you have 20% discount for all " + serviceName);
-		}
+			System.err.println("you have 20% discount for all " + ad.get_specific_discount()+" service");
+			
 		if (first_transaction && ad.get_specific_discount().equals(serviceName) == false)
-			System.err.println("you don't have any discounts");
+			System.err.println("you don't have any discounts for other services");
 	}
 
 	public void search() {
@@ -204,31 +198,17 @@ public class user {
 		if (num == 1) {
 			service s1 = new mobile_services();
 			s1.show();
-			System.err.println("Enter the sub service you want :(choose one from the above)");
-			Scanner sc1 = new Scanner(System.in);
-			String ser = sc1.nextLine();
-			s1.choose(ser);
 		} else if (num == 2) {
 			service s1 = new internet_service();
 			s1.show();
-			System.err.println("Enter the sub service you want :(choose one from the above)");
-			Scanner sc1 = new Scanner(System.in);
-			String ser = sc1.nextLine();
-			s1.choose(ser);
+
 		} else if (num == 3) {
 			service s1 = new landLine_service();
 			s1.show();
-			System.err.println("Enter the sub service you want :(choose one from the above)");
-			Scanner sc1 = new Scanner(System.in);
-			String ser = sc1.nextLine();
-			s1.choose(ser);
+			
 		} else if (num == 4) {
 			service s1 = new donations();
 			s1.show();
-			System.err.println("Enter the sub service you want :(choose one from the above)");
-			Scanner sc1 = new Scanner(System.in);
-			String ser = sc1.nextLine();
-			s1.choose(ser);
 		} else
 			System.err.println("not valid");
 

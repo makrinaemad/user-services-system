@@ -10,7 +10,8 @@ public class App {
 	   Vector<user>  us = new Vector<user>();
 	   user u =new user();
 	   int num_us=0;
-	    Admin ad = Admin.getInstance();
+	   int user=0;
+	    Admin ad = u.ad;
 	    boolean correct=false;
      while(true) {
     	 System.err.println("Enter 1 or 2\nAdmin or User");
@@ -26,7 +27,7 @@ public class App {
   	    	 System.err.println("Enter index of the user to show it (from 1 to "+(ad.user_list.size())+" )");
   	    	Scanner sc2=new Scanner(System.in);
   	      int indx=sc2.nextInt();
-  	    System.err.println(ad.user_list.get(indx-1)+ad.amount.get(indx-1)+"\nif you want to Accept enter 1 else 0");
+  	    System.err.println(ad.user_list.get(indx-1)+ad.amount.get(indx-1)+"\nif you want to Accept enter 1 else 2");
   	    	Scanner sc1=new Scanner(System.in);
     	      int no=sc1.nextInt();
   	    	 if(no==1) {
@@ -41,7 +42,7 @@ public class App {
   	    		  
   		}
   	    else if(n==2) {
-  	    	System.err.println("Enter the name of sevive you want to add (mobile,internet,donation,landline");
+  	    	System.err.println("Enter the name of sevive you want to add (mobile,internet,donation,landline)");
   	    	Scanner sc000=new Scanner(System.in);
     	      String s=sc000.nextLine();
   	    	  ad.make_specific_discount(s);
@@ -92,6 +93,7 @@ public class App {
          for(int i=0;i<us.size();i++) {
         	 if(name.equals( us.get(i).getName())&&password.equals(us.get(i).getPassword())) {
         		 us.get(i).signin(name, password);
+        		 user=i;
         		 correct=true;
         	 }
         	 else  {
@@ -114,6 +116,7 @@ public class App {
         	 if(name.equals( us.get(i).getName())&&password.equals(us.get(i).getPassword())) {
         		 us.get(i).signin(name, password);
         		 correct=true;
+        		 user=i;
         	 }
         	 if(i==us.size()-1&&correct==false)  {
         		 System.err.println("The name or the password is incorrect");
@@ -122,57 +125,57 @@ public class App {
          else
        	  System.err.println("Enter 1 or 2");
      
-      while(us.get(num_us).isSignout()&&correct==true) {
+      while(us.get(user).isSignout()&&correct==true) {
          System.err.println("\nEnter the number of what you want..\n1-Search\n2-Choose Service to pay\n3-Check Discount\n4-Ask for refund\n5-Add money in the wallet \n6-Set credit card or Cache payment  \n7-sign out ");
          Scanner sc4=new Scanner(System.in);
          String num=sc4.nextLine();
          if(num.equals("1")) {
-        	 us.get(num_us).search();
+        	 us.get(user).search();
          }
          else if(num.equals("2")) {
            System.err.println("Type the service you want \n -Mobile \n -Internet \n -Landline  \n -Donation ");
            Scanner sc40=new Scanner(System.in);
            String servname=sc40.nextLine();
-           us.get(num_us).setservice(servname);
+           us.get(user).setservice(servname);
            Scanner sc5=new Scanner(System.in);
            String serv=sc5.nextLine();
-           us.get(num_us).chooseService(serv);
+           us.get(user).chooseService(serv);
            System.err.println("Enter \n1-for(credit) \n2-for (cache) \n3-for (withdraw from your wallet)");
            Scanner sc11=new Scanner(System.in);
            int no=sc11.nextInt();
            System.err.println("Enter the amount");
            Scanner sc0=new Scanner(System.in);
            int money=sc0.nextInt();
-        	   us.get(num_us).pay(money,no);
+        	   us.get(user).pay(money,no);
          }
          else if(num.equals("3")) {
-        	 us.get(num_us).Check_Discount();
+        	 us.get(user).Check_Discount();
          }
          else if(num.equals("4")) {
-        	 us.get(num_us).request_refund();;
+        	 us.get(user).request_refund();;
          }
          else if(num.equals("5")) {
 
-        	 us.get(num_us).set_sevice_provider("wallet");
+        	 us.get(user).set_sevice_provider("wallet");
          }
         else if(num.equals("6")) {
          System.err.println("Enter 1 or 2 to set");
          Scanner sc11=new Scanner(System.in);
          int m=sc11.nextInt();
          if(m==1) {
-        	 us.get(num_us).set_sevice_provider("credit");
+        	 us.get(user).set_sevice_provider("credit");
          }
          else if(m==2) {
-        	 us.get(num_us).set_sevice_provider("cache");
+        	 us.get(user).set_sevice_provider("cache");
          }
          else {System.err.println("not valid");}
         }
          else if(num.equals("7")) {
-        	 us.get(num_us).setSignout(false);;
+        	 us.get(user).setSignout(false);;
          }
          else
         	 System.err.println("not valid");}
-      us.get(num_us).setSignout(true);  }
+      us.get(user).setSignout(true);  }
       
       
       System.err.println("if you want end the application enter 0 \n"
