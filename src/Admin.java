@@ -2,10 +2,10 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Admin {
-	user us;
+	//user us;
 	String accept;
 	String service = "";
-	public boolean specific_Dis = false;
+	//public boolean specific_Dis = false;
 	ArrayList<String> user_list = new ArrayList<String>();
 	private static final Admin instance = new Admin();
 

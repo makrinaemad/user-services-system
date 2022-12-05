@@ -12,15 +12,11 @@ public class landLine_service implements service {
     @Override
     public void choose(String obj) {
         this.service_name=obj;
-        if(service_name=="quarter"){
-            System.err.println(landline.get(0));
-        }
-        else if (service_name=="monthely"){
-            System.err.println(landline.get(1));
-        }
+        for(int i=0;i<landline.size();i++) {
+        	if(obj.equals(landline.get(i)))
+        		System.err.println("you choose landline servics "+landline.get(i));
         
-        
-    }
+    }}
 
     public void show() {
       	 for (int i = 0; i <landline.size(); i++)

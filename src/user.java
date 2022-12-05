@@ -3,14 +3,48 @@ import java.util.Scanner;
 public class user {
 	static Admin ad = Admin.getInstance();
 	public service s;
-	public String serviceName="";
+	public String serviceName="1";
 	public String name;
 	public String email;
 	public String password;
 	public int wallet = 0;
 	public boolean signup = false;
+	public boolean signout = true;
+	public boolean isSignout() {
+		return signout;
+	}
+
+	public void setSignout(boolean signout) {
+		this.signout = signout;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	
 
 	public payment p = new credit_card();
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
 
 	public user() {
 		super();
@@ -31,27 +65,37 @@ public class user {
 
 	}
 
-	
+	void signUp() {
+		
+	}
 	void chooseService(String serviceObj) {
 		this.serviceName = serviceObj;
 		s.choose(serviceObj);
 	}
 
 	void setservice(String obj) {
-		if (obj == "mobile"||obj=="Mobile") {
+		if (obj .equals("mobile")||obj.equals("Mobile")) {
 			this.s = new mobile_services();
-		} else if (obj == "internet"||obj=="Internet") {
+			 System.err.println("Type the service you want\norange \nwe \nvodafone \netisalat");
+		} else if (obj .equals("internet")||obj.equals("Internet")) {
 			this.s = new internet_service();
-		} else if (obj == "landline"||obj=="Landline") {
+			 System.err.println("Type the service you want\norange \nwe \nvodafone \netisalat");
+		} else if (obj .equals("landline")||obj.equals("Landline")) {
 			this.s = new landLine_service();
-		} else if (obj == "donation"||obj=="Donation") {
+			 System.err.println("Type the service you want\nquarter \nmonthely");
+		} else if (obj .equals("donation")||obj.equals("Donation")) {
 			this.s = new donations();
+			 System.err.println("Type the service you want\nschools \ncancer hospital  \nNGOs ");
 		}
 
 	}
 
+	public String getServiceName() {
+		return serviceName;
+	}
+
 	public void setwallet(int amount) {
-		this.wallet = amount;
+		this.wallet = wallet+amount;
 	}
 
 	public int getwallet() {
@@ -77,6 +121,7 @@ public class user {
 		} else if (ad.get_specific_discount() == serviceName) {
 			p = new specificDiscount(p);
 			p.pay();
+			
 		}
 
 		else if (signup == true) {
@@ -94,9 +139,11 @@ public class user {
 			System.err.println("you have 10% discount for the first transaction");
 		}
 
-		if (ad.get_specific_discount() == serviceName) {
+		if (ad.get_specific_discount().equals( serviceName)) {
 			System.err.println("you have 20% discount for all " + serviceName);
 		}
+		else if(signup ==false)
+			System.err.println("you don't have any discounts");
 	}
 
 	public void search() {
@@ -104,7 +151,7 @@ public class user {
 		System.err.println("2-Internet Service.");
 		System.err.println("3-Landline Service.");
 		System.err.println("4-Donation Service.");
-		System.err.println("if you want to choose any service enter its number");
+		System.err.println("if you want to show any service enter its number");
 		Scanner sc = new Scanner(System.in);
 		int num = sc.nextInt();
 

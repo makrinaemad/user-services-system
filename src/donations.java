@@ -14,16 +14,9 @@ public class donations implements service {
     @Override
     public void choose(String obj) {
         this.donation_name=obj;
-        if(donation_name=="schools"){
-            System.err.println(donation.get(0));
-        }
-        else if (donation_name=="cancer hospital"){
-            System.err.println(donation.get(1));
-        }
-        else if (donation_name=="NGO"){
-            System.err.println(donation.get(2));
-        }
-
+        for(int i=0;i<donation.size();i++) {
+        	if(obj.equals(donation.get(i)))
+        		System.err.println("you choose donation servics "+donation.get(i));}
         
     }
     public void show() {
