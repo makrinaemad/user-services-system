@@ -13,10 +13,10 @@ public class landLine_service implements service {
     public void choose(String obj) {
         this.service_name=obj;
         if(service_name=="quarter"){
-            System.err.println(service_name);
+            System.err.println(landline.get(0));
         }
         else if (service_name=="monthely"){
-            System.err.println(service_name);
+            System.err.println(landline.get(1));
         }
         
         

@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class user {
 	static Admin ad = Admin.getInstance();
 	public service s;
-	public String serviceName;
+	public String serviceName="";
 	public String name;
 	public String email;
 	public String password;
@@ -19,7 +19,7 @@ public class user {
 	void signin(String name, String pass) {
 		this.name = name;
 		this.password = pass;
-		System.err.println("hello " + name);
+		System.err.println("Hello " + name+"\n");
 
 	}
 
@@ -31,19 +31,20 @@ public class user {
 
 	}
 
+	
 	void chooseService(String serviceObj) {
 		this.serviceName = serviceObj;
-		s.choose(serviceName);
+		s.choose(serviceObj);
 	}
 
 	void setservice(String obj) {
-		if (obj == "mobile") {
+		if (obj == "mobile"||obj=="Mobile") {
 			this.s = new mobile_services();
-		} else if (obj == "internet") {
+		} else if (obj == "internet"||obj=="Internet") {
 			this.s = new internet_service();
-		} else if (obj == "landline") {
+		} else if (obj == "landline"||obj=="Landline") {
 			this.s = new landLine_service();
-		} else if (obj == "donation") {
+		} else if (obj == "donation"||obj=="Donation") {
 			this.s = new donations();
 		}
 

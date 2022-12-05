@@ -9,7 +9,7 @@ public class donations implements service {
     public donations() {
     	donation.add("schools");
     	donation.add("cancer hospital");
-    	donation.add("NGO");
+    	donation.add("NGOs");
     }
     @Override
     public void choose(String obj) {
